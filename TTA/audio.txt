@@ -1,0 +1,21 @@
+id	caption
+10176	An engine is being started up then idles
+102731	Wood cracking as metal clanks and slams against a wooden surface
+102756	Low ticktock sounds followed by objects moving
+102763	Pigeons are cooing
+102765	Birds chirp with a low whirring background noise
+102767	A stream of water rushing and trickling followed by a young man whooshing
+102770	A helicopter running
+102780	A vehicle horn honking followed by a bus driving in the distance
+102804	Clicking and vibrations from a sewing machine
+102810	Slow vibrations of a sewing machine with several clicks
+102865	Typing on a computer keyboard
+102867	Small dogs yip and whimper
+102868	A toilet is flushed with a loud hum and gurgling water
+102936	A man whistling followed by a man yelling as plastic rustles and clanks in the background
+103042	Several small birds chirping with faint rustling
+103061	Insects buzz and distant birds chirp
+103068	Several gunshots followed by a click and glass breaking
+107129	A train horn honking followed by a subway train running on railroad tracks
+107159	Waves crash against a shore
+107193	A machine is drilling

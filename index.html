@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MF-MJT - MeanFlow-Accelerated Multimodal Video-to-Audio Synthesis via One-Step Generation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <h1 class="logo">MF-MJT</h1>
+                <ul class="nav-menu">
+                    <li><a href="#home">Home</a></li>
+                <li><a href="#abstract">Abstract</a></li>
+                <li><a href="#audio">Music Example</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1 class="subtitle">MeanFlow-Accelerated Multimodal Video-to-Audio Synthesis via One-Step Generation</h1>
+            </div>
+        </section>
+
+        <!-- Abstract Section -->
+        <section id="abstract" class="abstract-section">
+            <div class="container">
+                <h2>Abstract</h2>
+                <div class="abstract-content">
+                    <div class="abstract-main">
+                        <p>A key challenge in synthesizing audios from silent videos is the inherent trade-off between synthesis quality and inference efficiency in existing methods. Take Flow Matching based models as an example: they rely on modeling instantaneous velocity, inherently require an iterative sampling process, leading to slow inference speeds. To address this efficiency bottleneck, we introduce a MeanFlow-accelerated model that characterizes flow fields using average velocity, enabling one-step generation and thereby significantly accelerating multimodal video-to-audio (VTA) synthesis while preserving audio quality, semantic alignment, and temporal synchronization. Furthermore, a scalar rescaling mechanism is employed to balance conditional and unconditional predictions when classifier-free guidance (CFG) is applied, effectively mitigating CFG-induced distortions in one step generation. Since the audio synthesis network is jointly trained with multimodal conditions, we further evaluate it on text-to-audio (TTA) synthesis task. The results demonstrate that incorporating MeanFlow into the network significantly improves inference speed without compromising perceptual quality on both VTA and TTA tasks.</p>
+                    </div>
+                    <div class="architecture-diagram">
+                        <img src="Fig1.png" alt="Comparison" style="width: 100%; max-width: 800px; height: auto; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);" />
+                        <p>Comparison of (a) previous flow matching based method and (b) proposed MeanFlow-accelerated method</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Audio Section -->
+        <section id="audio" class="audio-section">
+            <div class="container">
+                <h2>Audio Samples</h2>
+            
+             <!-- VTA Section -->
+            <div class="music-section">
+            <h3 class="section-title">Video to Audio Synthesis Task (Videos from VggSound)</h3>
+
+            <!-- 视频块 1（再来一个示例，改文件名即可） -->
+             <div class="video-sample">
+                <div class="video-caption">
+                 rope skipping
+                </div>
+                <div class="video-grid">
+                <!-- 第一行 -->
+                <div class="video-item">
+                    <p class="video-title">Ground Truth</p>
+                    <video controls>
+                    <source src="VTA/groundtruth/YFO26ojd-sI_000007.mp4" type="video/mp4">
+                    </video>       
+                </div>
+                <div class="video-item">
+                    <p class="video-title">Frieren (step = 1)</p>
+                    <video controls>
+                    <source src="VTA/Frieren_1/YFO26ojd-sI_000007.mp4" type="video/mp4">
+                    </video>
+                    
+                </div>
+                <div class="video-item">
+                    <p class="video-title">MF-MJT (step = 1)</p>
+                    <video controls>
+                    <source src="VTA/MF_MJT_1/YFO26ojd-sI_000007.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <!-- 第二行 -->
+                <div class="video-item">
+                    <p class="video-title">MMAudio (step = 25)</p>
+                    <video controls>
+                    <source src="VTA/MMAudio_25/YFO26ojd-sI_000007.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="video-item">
+                    <p class="video-title">Frieren (step = 25)</p>
+                    <video controls>
+                    <source src="VTA/Frieren_25/YFO26ojd-sI_000007.mp4" type="video/mp4">
+                    </video>  
+                </div>
+                <div class="video-item">
+                    <p class="video-title">MF-MJT (step = 25)</p>
+                    <video controls>
+                    <source src="VTA/MF_MJT_25/YFO26ojd-sI_000007.mp4" type="video/mp4">
+                    </video>
+                </div>
+                </div>
+            </div>
+
+            <!-- 视频块 2 -->
+            <div class="video-sample">
+                <div class="video-caption">
+                playing bongo
+                </div>
+                <div class="video-grid">
+                <div class="video-item">
+                    <video controls><source src="VTA/groundtruth/XwfxT99WlZE_000015.mp4" type="video/mp4"></video>
+                    <p class="video-title">Ground Truth</p>
+                </div>
+                <div class="video-item">
+                    <video controls><source src="VTA/Frieren_1/XwfxT99WlZE_000015.mp4" type="video/mp4"></video>
+                    <p class="video-title">Frieren (step = 1)</p>
+                </div>
+                <div class="video-item">
+                    <video controls><source src="VTA/MF_MJT_1/XwfxT99WlZE_000015.mp4" type="video/mp4"></video>
+                    <p class="video-title">MF-MJT (step = 1)</p>
+                </div>
+                <div class="video-item">
+                    <video controls><source src="VTA/MMAudio_25/XwfxT99WlZE_000015.mp4" type="video/mp4"></video>
+                    <p class="video-title">MMAudio (step = 25)</p>
+                </div>
+                <div class="video-item">
+                    <video controls><source src="VTA/Frieren_25/XwfxT99WlZE_000015.mp4" type="video/mp4"></video>
+                    <p class="video-title">Frieren (step = 25)</p>
+                </div>
+                <div class="video-item">
+                    <video controls><source src="VTA/MF_MJT_25/XwfxT99WlZE_000015.mp4" type="video/mp4"></video>
+                    <p class="video-title">MF-MJT (step = 25)</p>
+                </div>
+                </div>
+            </div>
+
+            <!-- 视频块 3（再来一个示例，改文件名即可） -->
+             <div class="video-sample">
+                <div class="video-caption">
+                 people eating apple
+                </div>
+                <div class="video-grid">
+                <!-- 第一行 -->
+                <div class="video-item">
+                    <p class="video-title">Ground Truth</p>
+                    <video controls>
+                    <source src="VTA/groundtruth/yQa3SuKpfLE_000093.mp4" type="video/mp4">
+                    </video>       
+                </div>
+                <div class="video-item">
+                    <p class="video-title">Frieren (step = 1)</p>
+                    <video controls>
+                    <source src="VTA/Frieren_1/yQa3SuKpfLE_000093.mp4" type="video/mp4">
+                    </video>
+                    
+                </div>
+                <div class="video-item">
+                    <p class="video-title">MF-MJT (step = 1)</p>
+                    <video controls>
+                    <source src="VTA/MF_MJT_1/yQa3SuKpfLE_000093.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <!-- 第二行 -->
+                <div class="video-item">
+                    <p class="video-title">MMAudio (step = 25)</p>
+                    <video controls>
+                    <source src="VTA/MMAudio_25/yQa3SuKpfLE_000093.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="video-item">
+                    <p class="video-title">Frieren (step = 25)</p>
+                    <video controls>
+                    <source src="VTA/Frieren_25/yQa3SuKpfLE_000093.mp4" type="video/mp4">
+                    </video>  
+                </div>
+                <div class="video-item">
+                    <p class="video-title">MF-MJT (step = 25)</p>
+                    <video controls>
+                    <source src="VTA/MF_MJT_25/yQa3SuKpfLE_000093.mp4" type="video/mp4">
+                    </video>
+                </div>
+                </div>
+            </div>
+            
+            <!-- 视频块 4（再来一个示例，改文件名即可） -->
+             <div class="video-sample">
+                <div class="video-caption">
+                 playing accordion
+                </div>
+                <div class="video-grid">
+                <!-- 第一行 -->
+                <div class="video-item">
+                    <p class="video-title">Ground Truth</p>
+                    <video controls>
+                    <source src="VTA/groundtruth/XQbgV10IpoM_000170.mp4" type="video/mp4">
+                    </video>       
+                </div>
+                <div class="video-item">
+                    <p class="video-title">Frieren (step = 1)</p>
+                    <video controls>
+                    <source src="VTA/Frieren_1/XQbgV10IpoM_000170.mp4" type="video/mp4">
+                    </video>
+                    
+                </div>
+                <div class="video-item">
+                    <p class="video-title">MF-MJT (step = 1)</p>
+                    <video controls>
+                    <source src="VTA/MF_MJT_1/XQbgV10IpoM_000170.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <!-- 第二行 -->
+                <div class="video-item">
+                    <p class="video-title">MMAudio (step = 25)</p>
+                    <video controls>
+                    <source src="VTA/MMAudio_25/XQbgV10IpoM_000170.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="video-item">
+                    <p class="video-title">Frieren (step = 25)</p>
+                    <video controls>
+                    <source src="VTA/Frieren_25/XQbgV10IpoM_000170.mp4" type="video/mp4">
+                    </video>  
+                </div>
+                <div class="video-item">
+                    <p class="video-title">MF-MJT (step = 25)</p>
+                    <video controls>
+                    <source src="VTA/MF_MJT_25/XQbgV10IpoM_000170.mp4" type="video/mp4">
+                    </video>
+                </div>
+                </div>
+            </div>
+
+            <!-- 视频块 5（再来一个示例，改文件名即可） -->
+             <div class="video-sample">
+                <div class="video-caption">
+                 warbler chirping
+                </div>
+                <div class="video-grid">
+                <!-- 第一行 -->
+                <div class="video-item">
+                    <p class="video-title">Ground Truth</p>
+                    <video controls>
+                    <source src="VTA/groundtruth/YY3DY_U9oBk_000049.mp4" type="video/mp4">
+                    </video>       
+                </div>
+                <div class="video-item">
+                    <p class="video-title">Frieren (step = 1)</p>
+                    <video controls>
+                    <source src="VTA/Frieren_1/YY3DY_U9oBk_000049.mp4" type="video/mp4">
+                    </video>
+                    
+                </div>
+                <div class="video-item">
+                    <p class="video-title">MF-MJT (step = 1)</p>
+                    <video controls>
+                    <source src="VTA/MF_MJT_1/YY3DY_U9oBk_000049.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <!-- 第二行 -->
+                <div class="video-item">
+                    <p class="video-title">MMAudio (step = 25)</p>
+                    <video controls>
+                    <source src="VTA/MMAudio_25/YY3DY_U9oBk_000049.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="video-item">
+                    <p class="video-title">Frieren (step = 25)</p>
+                    <video controls>
+                    <source src="VTA/Frieren_25/YY3DY_U9oBk_000049.mp4" type="video/mp4">
+                    </video>  
+                </div>
+                <div class="video-item">
+                    <p class="video-title">MF-MJT (step = 25)</p>
+                    <video controls>
+                    <source src="VTA/MF_MJT_25/YY3DY_U9oBk_000049.mp4" type="video/mp4">
+                    </video>
+                </div>
+                </div>
+            </div>
+
+            
+
+            <!-- 继续按需复制 .video-sample，修改 caption 与路径为 video3.mp4, video4.mp4 ... -->
+            </div>
+
+
+
+                
+            <!-- TTA Section -->
+            <div class="music-section">
+                <h3 class="section-title">Text to Audio Synthesis Task (Captions from AudioCaps)</h3>
+                <div class="audio-table">
+                 
+                    <div class="audio-rows musiccaps">
+                        <!-- Row 1 -->
+                        <div class="audio-row musiccaps">
+                            <div class="row-description">
+                                <span class="caption-label">Caption:</span>
+                                Several gunshots followed by a click and glass breaking
+                            </div>
+                            <!-- AudioLCM step=1 -->
+                            <div class="row-original">
+                                <div class="audio-item-compact">
+                                    <span class="audio-title">AudioLCM (step = 1)</span>
+                                    <div class="audio-player-mini">
+                                        <button class="play-btn-mini" data-audio="TTA/AudioLCM_1/103068.wav">▶</button>
+                                        <div class="progress-mini"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- MF-MJT step=1 -->
+                            <div class="row-processed">
+                                <div class="audio-item-compact">
+                                    <span class="audio-title">MF-MJT (step = 1)</span>
+                                    <div class="audio-player-mini">
+                                        <button class="play-btn-mini" data-audio="TTA/MF_MJT_1/103068.wav">▶</button>
+                                        <div class="progress-mini"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- AudioLCM step=25 -->
+                            <div class="row-baseline">
+                                <div class="audio-item-compact">
+                                    <span class="audio-title">AudioLCM (step = 25)</span>
+                                    <div class="audio-player-mini">
+                                        <button class="play-btn-mini" data-audio="TTA/AudioLCM_25/103068.wav">▶</button>
+                                        <div class="progress-mini"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- MF-MJT step=25 -->
+                            <div class="row-mfmjt">
+                                <div class="audio-item-compact">
+                                    <span class="audio-title">MF-MJT (step = 25)</span>
+                                    <div class="audio-player-mini">
+                                        <button class="play-btn-mini" data-audio="TTA/MF_MJT_25/103068.wav">▶</button>
+                                        <div class="progress-mini"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Ground Truth -->
+                            <div class="row-groundtruth">
+                                <div class="audio-item-compact">
+                                    <span class="audio-title">Ground Truth</span>
+                                    <div class="audio-player-mini">
+                                        <button class="play-btn-mini" data-audio="TTA/groundtruth/103068.wav">▶</button>
+                                        <div class="progress-mini"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- Row 2 -->
+                        <div class="audio-row musiccaps">
+                            <div class="row-description">
+                                <span class="caption-label">Caption:</span>
+                                A stream of water rushing and trickling followed by a young man whooshing
+                            </div>
+                            <!-- AudioLCM step=1 -->
+                            <div class="row-original">
+                                <div class="audio-item-compact">
+                                    <span class="audio-title">AudioLCM (step = 1)</span>
+                                    <div class="audio-player-mini">
+                                        <button class="play-btn-mini" data-audio="TTA/AudioLCM_1/102767.wav">▶</button>
+                                        <div class="progress-mini"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- MF-MJT step=1 -->
+                            <div class="row-processed">
+                                <div class="audio-item-compact">
+                                    <span class="audio-title">MF-MJT (step = 1)</span>
+                                    <div class="audio-player-mini">
+                                        <button class="play-btn-mini" data-audio="TTA/MF_MJT_1/102767.wav">▶</button>
+                                        <div class="progress-mini"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- AudioLCM step=25 -->
+                            <div class="row-baseline">
+                                <div class="audio-item-compact">
+                                    <span class="audio-title">AudioLCM (step = 25)</span>
+                                    <div class="audio-player-mini">
+                                        <button class="play-btn-mini" data-audio="TTA/AudioLCM_25/102767.wav">▶</button>
+                                        <div class="progress-mini"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- MF-MJT step=25 -->
+                            <div class="row-mfmjt">
+                                <div class="audio-item-compact">
+                                    <span class="audio-title">MF-MJT (step = 25)</span>
+                                    <div class="audio-player-mini">
+                                        <button class="play-btn-mini" data-audio="TTA/MF_MJT_25/102767.wav">▶</button>
+                                        <div class="progress-mini"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Ground Truth -->
+                            <div class="row-groundtruth">
+                                <div class="audio-item-compact">
+                                    <span class="audio-title">Ground Truth</span>
+                                    <div class="audio-player-mini">
+                                        <button class="play-btn-mini" data-audio="TTA/groundtruth/102767.wav">▶</button>
+                                        <div class="progress-mini"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                       <!-- Row 3 -->
+                        <div class="audio-row musiccaps">
+                            <div class="row-description">
+                                <span class="caption-label">Caption:</span>
+                                Clicking and vibrations from a sewing machine
+                            </div>
+                            <!-- AudioLCM step=1 -->
+                            <div class="row-original">
+                                <div class="audio-item-compact">
+                                    <span class="audio-title">AudioLCM (step = 1)</span>
+                                    <div class="audio-player-mini">
+                                        <button class="play-btn-mini" data-audio="TTA/AudioLCM_1/102804.wav">▶</button>
+                                        <div class="progress-mini"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- MF-MJT step=1 -->
+                            <div class="row-processed">
+                                <div class="audio-item-compact">
+                                    <span class="audio-title">MF-MJT (step = 1)</span>
+                                    <div class="audio-player-mini">
+                                        <button class="play-btn-mini" data-audio="TTA/MF_MJT_1/102804.wav">▶</button>
+                                        <div class="progress-mini"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- AudioLCM step=25 -->
+                            <div class="row-baseline">
+                                <div class="audio-item-compact">
+                                    <span class="audio-title">AudioLCM (step = 25)</span>
+                                    <div class="audio-player-mini">
+                                        <button class="play-btn-mini" data-audio="TTA/AudioLCM_25/102804.wav">▶</button>
+                                        <div class="progress-mini"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- MF-MJT step=25 -->
+                            <div class="row-mfmjt">
+                                <div class="audio-item-compact">
+                                    <span class="audio-title">MF-MJT (step = 25)</span>
+                                    <div class="audio-player-mini">
+                                        <button class="play-btn-mini" data-audio="TTA/MF_MJT_25/102804.wav">▶</button>
+                                        <div class="progress-mini"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Ground Truth -->
+                            <div class="row-groundtruth">
+                                <div class="audio-item-compact">
+                                    <span class="audio-title">Ground Truth</span>
+                                    <div class="audio-player-mini">
+                                        <button class="play-btn-mini" data-audio="TTA/groundtruth/102804.wav">▶</button>
+                                        <div class="progress-mini"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Row 4 -->
+                        <div class="audio-row musiccaps">
+                            <div class="row-description">
+                                <span class="caption-label">Caption:</span>
+                                Small dogs yip and whimper
+                            </div>
+                            <!-- AudioLCM step=1 -->
+                            <div class="row-original">
+                                <div class="audio-item-compact">
+                                    <span class="audio-title">AudioLCM (step = 1)</span>
+                                    <div class="audio-player-mini">
+                                        <button class="play-btn-mini" data-audio="TTA/AudioLCM_1/102867.wav">▶</button>
+                                        <div class="progress-mini"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- MF-MJT step=1 -->
+                            <div class="row-processed">
+                                <div class="audio-item-compact">
+                                    <span class="audio-title">MF-MJT (step = 1)</span>
+                                    <div class="audio-player-mini">
+                                        <button class="play-btn-mini" data-audio="TTA/MF_MJT_1/102867.wav">▶</button>
+                                        <div class="progress-mini"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- AudioLCM step=25 -->
+                            <div class="row-baseline">
+                                <div class="audio-item-compact">
+                                    <span class="audio-title">AudioLCM (step = 25)</span>
+                                    <div class="audio-player-mini">
+                                        <button class="play-btn-mini" data-audio="TTA/AudioLCM_25/102867.wav">▶</button>
+                                        <div class="progress-mini"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- MF-MJT step=25 -->
+                            <div class="row-mfmjt">
+                                <div class="audio-item-compact">
+                                    <span class="audio-title">MF-MJT (step = 25)</span>
+                                    <div class="audio-player-mini">
+                                        <button class="play-btn-mini" data-audio="TTA/MF_MJT_25/102867.wav">▶</button>
+                                        <div class="progress-mini"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Ground Truth -->
+                            <div class="row-groundtruth">
+                                <div class="audio-item-compact">
+                                    <span class="audio-title">Ground Truth</span>
+                                    <div class="audio-player-mini">
+                                        <button class="play-btn-mini" data-audio="TTA/groundtruth/102867.wav">▶</button>
+                                        <div class="progress-mini"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Row 5 -->
+                        <div class="audio-row musiccaps">
+                            <div class="row-description">
+                                <span class="caption-label">Caption:</span>
+                                A man whistling followed by a man yelling as plastic rustles and clanks in the background
+                            </div>
+                            <!-- AudioLCM step=1 -->
+                            <div class="row-original">
+                                <div class="audio-item-compact">
+                                    <span class="audio-title">AudioLCM (step = 1)</span>
+                                    <div class="audio-player-mini">
+                                        <button class="play-btn-mini" data-audio="TTA/AudioLCM_1/102936.wav">▶</button>
+                                        <div class="progress-mini"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- MF-MJT step=1 -->
+                            <div class="row-processed">
+                                <div class="audio-item-compact">
+                                    <span class="audio-title">MF-MJT (step = 1)</span>
+                                    <div class="audio-player-mini">
+                                        <button class="play-btn-mini" data-audio="TTA/MF_MJT_1/102936.wav">▶</button>
+                                        <div class="progress-mini"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- AudioLCM step=25 -->
+                            <div class="row-baseline">
+                                <div class="audio-item-compact">
+                                    <span class="audio-title">AudioLCM (step = 25)</span>
+                                    <div class="audio-player-mini">
+                                        <button class="play-btn-mini" data-audio="TTA/AudioLCM_25/102936.wav">▶</button>
+                                        <div class="progress-mini"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- MF-MJT step=25 -->
+                            <div class="row-mfmjt">
+                                <div class="audio-item-compact">
+                                    <span class="audio-title">MF-MJT (step = 25)</span>
+                                    <div class="audio-player-mini">
+                                        <button class="play-btn-mini" data-audio="TTA/MF_MJT_25/102936.wav">▶</button>
+                                        <div class="progress-mini"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Ground Truth -->
+                            <div class="row-groundtruth">
+                                <div class="audio-item-compact">
+                                    <span class="audio-title">Ground Truth</span>
+                                    <div class="audio-player-mini">
+                                        <button class="play-btn-mini" data-audio="TTA/groundtruth/102936.wav">▶</button>
+                                        <div class="progress-mini"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Row 6 -->
+                        <div class="audio-row musiccaps">
+                            <div class="row-description">
+                                <span class="caption-label">Caption:</span>
+                                Several small birds chirping with faint rustling
+                            </div>
+                            <!-- AudioLCM step=1 -->
+                            <div class="row-original">
+                                <div class="audio-item-compact">
+                                    <span class="audio-title">AudioLCM (step = 1)</span>
+                                    <div class="audio-player-mini">
+                                        <button class="play-btn-mini" data-audio="TTA/AudioLCM_1/103042.wav">▶</button>
+                                        <div class="progress-mini"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- MF-MJT step=1 -->
+                            <div class="row-processed">
+                                <div class="audio-item-compact">
+                                    <span class="audio-title">MF-MJT (step = 1)</span>
+                                    <div class="audio-player-mini">
+                                        <button class="play-btn-mini" data-audio="TTA/MF_MJT_1/103042.wav">▶</button>
+                                        <div class="progress-mini"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- AudioLCM step=25 -->
+                            <div class="row-baseline">
+                                <div class="audio-item-compact">
+                                    <span class="audio-title">AudioLCM (step = 25)</span>
+                                    <div class="audio-player-mini">
+                                        <button class="play-btn-mini" data-audio="TTA/AudioLCM_25/103042.wav">▶</button>
+                                        <div class="progress-mini"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- MF-MJT step=25 -->
+                            <div class="row-mfmjt">
+                                <div class="audio-item-compact">
+                                    <span class="audio-title">MF-MJT (step = 25)</span>
+                                    <div class="audio-player-mini">
+                                        <button class="play-btn-mini" data-audio="TTA/MF_MJT_25/103042.wav">▶</button>
+                                        <div class="progress-mini"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Ground Truth -->
+                            <div class="row-groundtruth">
+                                <div class="audio-item-compact">
+                                    <span class="audio-title">Ground Truth</span>
+                                    <div class="audio-player-mini">
+                                        <button class="play-btn-mini" data-audio="TTA/groundtruth/103042.wav">▶</button>
+                                        <div class="progress-mini"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Row 7 -->
+                        <div class="audio-row musiccaps">
+                            <div class="row-description">
+                                <span class="caption-label">Caption:</span>
+                                Waves crash against a shore
+                            </div>
+                            <!-- AudioLCM step=1 -->
+                            <div class="row-original">
+                                <div class="audio-item-compact">
+                                    <span class="audio-title">AudioLCM (step = 1)</span>
+                                    <div class="audio-player-mini">
+                                        <button class="play-btn-mini" data-audio="TTA/AudioLCM_1/107159.wav">▶</button>
+                                        <div class="progress-mini"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        <!-- MF-MJT step=1 -->
+                            <div class="row-processed">
+                                <div class="audio-item-compact">
+                                    <span class="audio-title">MF-MJT (step = 1)</span>
+                                    <div class="audio-player-mini">
+                                        <button class="play-btn-mini" data-audio="TTA/MF_MJT_1/107159.wav">▶</button>
+                                        <div class="progress-mini"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- AudioLCM step=25 -->
+                            <div class="row-baseline">
+                                <div class="audio-item-compact">
+                                    <span class="audio-title">AudioLCM (step = 25)</span>
+                                    <div class="audio-player-mini">
+                                        <button class="play-btn-mini" data-audio="TTA/AudioLCM_25/107159.wav">▶</button>
+                                        <div class="progress-mini"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- MF-MJT step=25 -->
+                            <div class="row-mfmjt">
+                                <div class="audio-item-compact">
+                                    <span class="audio-title">MF-MJT (step = 25)</span>
+                                    <div class="audio-player-mini">
+                                        <button class="play-btn-mini" data-audio="TTA/MF_MJT_25/107159.wav">▶</button>
+                                        <div class="progress-mini"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Ground Truth -->
+                            <div class="row-groundtruth">
+                                <div class="audio-item-compact">
+                                    <span class="audio-title">Ground Truth</span>
+                                    <div class="audio-player-mini">
+                                        <button class="play-btn-mini" data-audio="TTA/groundtruth/107159.wav">▶</button>
+                                        <div class="progress-mini"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ✅ 更多行可以直接复制上面结构，替换 caption 和音频路径 -->
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content" style="text-align: center;">
+                <div class="footer-section">
+                    <p>This is an anonymous research demonstration For academic purposes only</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
